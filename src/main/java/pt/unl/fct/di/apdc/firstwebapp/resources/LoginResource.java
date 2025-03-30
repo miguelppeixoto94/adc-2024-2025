@@ -36,14 +36,26 @@ public class LoginResource {
 	public Response doLogin(LoginData data) {
 		LOG.fine("Login attempt by user: " + data.username);
 		
-		return Response.ok().build();
+		//return Response.ok().build();
+		//slide130
+		//return Response.ok(new AuthToken(data.username)).build();
+		
+		if(data.username.equals("jleitao") && data.password.equals("password")) {
+			AuthToken at = new AuthToken(data.username);
+			return Response.ok(g.toJson(at)).build();
+		}
+		return Response.status(Status.FORBIDDEN).entity("Incorrect username or password.").build();
 	}
 	
 	@GET
 	@Path("/{username}")
 	public Response checkUsernameAvailable(@PathParam("username") String username) {
 		
-		return Response.ok().entity(g.toJson(true)).build();
+		if (username.equals("jleitao")) {
+			return Response.ok().entity(g.toJson(false)).build();
+		} else {
+			return Response.ok().entity(g.toJson(true)).build();
+		}
 	}
 
 }

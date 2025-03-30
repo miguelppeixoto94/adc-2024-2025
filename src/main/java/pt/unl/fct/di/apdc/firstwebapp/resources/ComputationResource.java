@@ -56,7 +56,7 @@ public class ComputationResource {
 	@GET
 	@Path("/compute")
 	public Response triggerExecuteComputeTask() throws IOException {
-		String projectId = "quantum-shard-415522";
+		String projectId = "my-first-project-453516";
 		String queueName = "Default";
 		String location = "europe-west6";
 		LOG.log(Level.INFO, projectId + " :: " + queueName + " :: " + location );
